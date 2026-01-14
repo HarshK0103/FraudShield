@@ -1,0 +1,35 @@
+FraudShield/
+│
+├── backend/                         # NEW – ML inference service
+│   ├── main.py                      # FastAPI/Flask API
+│   ├── inference.py                 # Loads models & runs hybrid logic
+│   ├── utils.py                     # Validation & preprocessing
+│   └── requirements.txt
+│
+├── frontend/                        # NEW – Lovable-generated website
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   └── README.md
+│
+├── models/                          # Existing (unchanged)
+│   ├── xgb_model.pkl
+│   ├── autoencoder_model.keras
+│   └── scaler.pkl
+│
+├── notebook/                        # Existing
+│   └── Credit card Fraud.ipynb
+│
+├── dataset/                         # Local only
+│   └── creditcard.csv
+│
+├── sample_data/
+│   └── sample_test.csv
+│
+├── outputs/
+│   └── fraud_risk_predictions.csv
+│
+├── README.md                        # Updated: Streamlit → Web App
+├── .gitignore
+└── LICENSE

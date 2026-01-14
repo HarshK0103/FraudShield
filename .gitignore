@@ -1,0 +1,25 @@
+# ======================
+# Python
+# ======================
+venv/
+__pycache__/
+*.pyc
+
+# ======================
+# Node / Frontend
+# ======================
+node_modules/
+dist/
+
+# ======================
+# Datasets & Outputs
+# ======================
+dataset/creditcard.csv
+outputs/
+
+# ======================
+# OS / Editor
+# ======================
+.DS_Store
+.vscode/
+.env

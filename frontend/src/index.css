@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --background: 222 30% 6%;
+        --foreground: 210 20% 98%;
+
+        --card: 222 25% 10%;
+        --card-foreground: 210 20% 98%;
+
+        --popover: 222 25% 10%;
+        --popover-foreground: 210 20% 98%;
+
+        --primary: 210 100% 52%;
+        --primary-foreground: 210 20% 98%;
+
+        --secondary: 222 20% 16%;
+        --secondary-foreground: 210 20% 98%;
+
+        --muted: 222 20% 18%;
+        --muted-foreground: 215 15% 55%;
+
+        --accent: 210 100% 52%;
+        --accent-foreground: 210 20% 98%;
+
+        --destructive: 0 85% 55%;
+        --destructive-foreground: 210 20% 98%;
+
+        --success: 150 70% 42%;
+        --success-foreground: 210 20% 98%;
+
+        --warning: 38 92% 50%;
+        --warning-foreground: 222 30% 6%;
+
+        --fraud: 0 85% 55%;
+        --fraud-foreground: 210 20% 98%;
+
+        --safe: 150 70% 42%;
+        --safe-foreground: 210 20% 98%;
+
+        --border: 222 20% 18%;
+        --input: 222 20% 14%;
+        --ring: 210 100% 52%;
+
+        --radius: 0.75rem;
+
+        --chart-1: 210 100% 52%;
+        --chart-2: 0 85% 55%;
+        --chart-3: 150 70% 42%;
+        --chart-4: 38 92% 50%;
+        --chart-5: 280 65% 60%;
+
+        --gradient-primary: linear-gradient(135deg, hsl(210 100% 52%) 0%, hsl(220 90% 45%) 100%);
+        --gradient-danger: linear-gradient(135deg, hsl(0 85% 55%) 0%, hsl(350 80% 45%) 100%);
+        --gradient-success: linear-gradient(135deg, hsl(150 70% 42%) 0%, hsl(160 65% 35%) 100%);
+        --gradient-dark: linear-gradient(180deg, hsl(222 30% 6%) 0%, hsl(222 25% 10%) 100%);
+        --gradient-card: linear-gradient(145deg, hsl(222 25% 12%) 0%, hsl(222 25% 8%) 100%);
+        --gradient-glow: radial-gradient(ellipse at center, hsl(210 100% 52% / 0.15) 0%, transparent 70%);
+
+        --shadow-sm: 0 2px 8px hsl(222 30% 2% / 0.4);
+        --shadow-md: 0 4px 16px hsl(222 30% 2% / 0.5);
+        --shadow-lg: 0 8px 32px hsl(222 30% 2% / 0.6);
+        --shadow-glow: 0 0 40px hsl(210 100% 52% / 0.2);
+        --shadow-fraud: 0 0 20px hsl(0 85% 55% / 0.3);
+        --shadow-safe: 0 0 20px hsl(150 70% 42% / 0.3);
+
+        --sidebar-background: 222 25% 8%;
+        --sidebar-foreground: 210 20% 98%;
+        --sidebar-primary: 210 100% 52%;
+        --sidebar-primary-foreground: 210 20% 98%;
+        --sidebar-accent: 222 20% 14%;
+        --sidebar-accent-foreground: 210 20% 98%;
+        --sidebar-border: 222 20% 18%;
+        --sidebar-ring: 210 100% 52%;
+    }
+
+    .dark {
+        --background: 222 30% 6%;
+        --foreground: 210 20% 98%;
+    }
+    }
+
+    @layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+    }
+    }
+
+    @layer utilities {
+    .gradient-primary {
+        background: var(--gradient-primary);
+    }
+
+    .gradient-danger {
+        background: var(--gradient-danger);
+    }
+
+    .gradient-success {
+        background: var(--gradient-success);
+    }
+
+    .gradient-card {
+        background: var(--gradient-card);
+    }
+
+    .shadow-glow {
+        box-shadow: var(--shadow-glow);
+    }
+
+    .shadow-fraud {
+        box-shadow: var(--shadow-fraud);
+    }
+
+    .shadow-safe {
+        box-shadow: var(--shadow-safe);
+    }
+
+    .text-gradient {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glass {
+        background: hsl(222 25% 10% / 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid hsl(222 20% 20% / 0.5);
+    }
+
+    .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .grid-pattern {
+        background-image:
+        linear-gradient(hsl(222 20% 15% / 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(222 20% 15% / 0.5) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+}
