@@ -1,182 +1,243 @@
 <h1 align="center">💳 FraudShield</h1>
 <h3 align="center">🔐 Hybrid Credit Card Fraud Detection using XGBoost + Autoencoder</h3>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python">
-  <img src="https://img.shields.io/badge/Machine%20Learning-XGBoost-success?logo=xgboost">
-  <img src="https://img.shields.io/badge/Deep%20Learning-Autoencoder-orange?logo=tensorflow">
-  <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit">
-</p>
-
 ---
 
 ## 🚀 Overview
 
-**FraudShield** is an intelligent fraud detection system that blends the strengths of **XGBoost** (supervised learning) and **Autoencoder** (unsupervised learning) to identify fraudulent credit card transactions with high accuracy and interpretability.
-
-> 🧠 Inspired by real-world banking scenarios, FraudShield enhances fraud prediction by calculating a **hybrid risk score** that balances classification and anomaly detection.
+**FraudShield** is a **production‑ready, full‑stack machine learning application** designed to detect fraudulent credit card transactions using a **hybrid modeling approach**. It combines the strengths of **supervised learning (XGBoost)** and **unsupervised learning (Deep Autoencoder)** to deliver accurate, explainable, and robust fraud predictions through a modern web interface.
 
 ---
 
-## 🎯 Objectives
+## 🌐 Live Deployment
 
-- ✅ Detect subtle fraud patterns beyond classical models  
-- ✅ Use anomaly reconstruction and classification synergy  
-- ✅ Build an interactive, ready-to-test **Streamlit web app**  
-- ✅ Provide downloadable results with risk insights  
+- **Frontend (React + Vite + Tailwind CSS):**  
+  🔗 https://fraudshield.vercel.app *(replace with your actual URL)*
 
----
+- **Backend (FastAPI + ML Inference):**  
+  🔗 https://fraudshield-api.onrender.com *(replace with your actual URL)*
 
-## 📐 Project Architecture
-
-```
-Dataset (creditcard.csv)
-        │
-        ▼
-[Data Preprocessing]
- - Standard Scaling (Time, Amount)
- - Class Balancing (optional)
-        │
-        ├─────────────┬─────────────┐
-        ▼                           ▼
-[XGBoost Classifier]       [Autoencoder (Anomaly Detection)]
-        │                           │
-        └───────► Hybrid Risk Scoring ◄────────
-                        ▼
-               Final Fraud Prediction
-```
+> ⚠️ Backend may take a few seconds to wake up if deployed on free-tier hosting.
 
 ---
 
-## 🧠 Models Used
+## 🚀 Why FraudShield?
 
-### 🔹 XGBoost Classifier
+Credit card fraud is highly **imbalanced**, **evolving**, and **costly**. Traditional classifiers struggle with:
+- Detecting **novel fraud patterns**
+- Maintaining performance on **unseen data**
+- Explaining why a transaction is risky
+
+FraudShield addresses these challenges by:
+- Detecting **known fraud patterns** with XGBoost  
+- Detecting **unknown / zero-day frauds** using anomaly detection  
+- Combining both signals into a **Hybrid Risk Score**  
+- Presenting results in a **clean, interactive dashboard**
+
+---
+
+## 🧠 Core ML Approach
+
+### 1️⃣ XGBoost Classifier (Supervised)
 - Trained on labeled fraud data
-- Outputs fraud probability
-- Great for known patterns
+- Outputs probability of fraud
+- High precision on known fraud signatures
+- Handles class imbalance effectively
 
+### 2️⃣ Autoencoder (Unsupervised)
+- Trained only on normal (non-fraud) transactions
+- Learns normal transaction behavior
+- High reconstruction error → anomalous transaction
+- Detects new and evolving fraud patterns
 
-### 🔸 Autoencoder
-- Trained only on non-fraud transactions
-- Reconstructs data to detect anomalies
-- Detects new, unseen fraud types
+### 3️⃣ Hybrid Risk Score
+A weighted combination of both models:
 
-
-### ⚖️ Hybrid Risk Score
-
-We compute a hybrid score like this:
-
-```python
-Hybrid Score = 0.5 * XGBoost Probability + 0.5 * Autoencoder Anomaly
+```
+Hybrid Risk Score = α × P(fraud | XGBoost) + (1 − α) × Anomaly Score
 ```
 
-Fraud prediction is positive if the hybrid score > 50%.
+- α dynamically balances confidence
+- Final score scaled to **0–100%**
+- Fraud flag triggered if score > 50%
 
 ---
 
-## 🧪 Dataset Info
+## 🏗️ System Architecture
 
-- 📦 Source: [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-- 📊 284,807 transactions, 492 frauds (~0.17%)
-- 🔢 Features: `Time`, `V1`–`V28`, `Amount`, `Class`
-- 🚫 Only a small `sample.csv` is included for testing
+```
+User CSV Upload
+      │
+      ▼
+React Frontend (Vite + Tailwind)
+      │
+      ▼
+FastAPI Backend (REST API)
+      │
+      ├── Preprocessing (Scaling, Validation)
+      ├── XGBoost Inference
+      ├── Autoencoder Inference
+      └── Hybrid Risk Computation
+      │
+      ▼
+JSON Response
+      │
+      ▼
+Dashboard + Charts + CSV Download
+```
 
 ---
 
-## 📐 Project Structure
+## 🖥️ Frontend Features
+
+- 📁 CSV file upload
+- 📊 Interactive charts (risk distribution, fraud ratio)
+- 📋 Detailed transaction-level results table
+- 🔢 Fraud probability, anomaly score & hybrid score
+- 📥 Download predictions as CSV
+- 🌙 Dark‑themed FinTech UI (Tailwind + Framer Motion)
+
+**Tech Stack**
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- Recharts
+- Axios
+
+---
+
+## ⚙️ Backend Features
+
+- RESTful API using FastAPI
+- CSV validation & preprocessing
+- Model loading once at startup (optimized)
+- Batch inference
+- Downloadable prediction results
+- CORS enabled for frontend access
+
+**Tech Stack**
+- FastAPI
+- Pandas, NumPy
+- Scikit‑learn
+- XGBoost
+- TensorFlow / Keras
+- Joblib
+
+---
+
+## 📂 Current Project Structure
 
 ```
 FraudShield/
 │
-├── app/
-│   ├── app.py                          # Streamlit app logic
-│   ├── xgb_model.pkl                   # Trained XGBoost classifier
-│   ├── autoencoder_model.keras         # Trained Autoencoder model
-│   └── scaler.pkl                      # StandardScaler for preprocessing
+├── backend/
+│   ├── main.py              # FastAPI app & routes
+│   ├── inference.py         # Hybrid ML inference logic
+│   ├── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/      # UI components
+│   │   ├── pages/
+│   │   ├── lib/
+│   │   ├── index.css
+│   │   └── main.tsx
+│   ├── vite.config.ts
+│   ├── tailwind.config.ts
+│   └── package.json
 │
 ├── models/
 │   ├── xgb_model.pkl
 │   ├── autoencoder_model.keras
 │   └── scaler.pkl
 │
+├── dataset/
+│   └── creditcard.csv
+│
 ├── notebook/
-│   └── Credit card Fraud.ipynb         # Training and evaluation notebook
+│   └── Credit card Fraud.ipynb
 │
-├── data/
-│   └── sample.csv                      # Example test file for predictions
-│
-├── requirements.txt
-├── LICENSE
-└── README.md
+├── sample.csv
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## 🛠️ Installation
+## 🧪 Dataset
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/FraudShield.git
-   cd FraudShield
-   ```
+- **Source:** Kaggle – Credit Card Fraud Detection  
+- **Transactions:** 284,807  
+- **Fraud Cases:** 492 (0.17%)
+- **Features:**  
+  - `Time`, `Amount`  
+  - PCA components `V1`–`V28`
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the Streamlit app**
-   ```bash
-   streamlit run app/app.py
-   ```
-
-4. **Upload test data**  
-   Use the `sample.csv` from `/data/` or your own formatted file.
-
-> ⚠️ Full training dataset is not included due to size. You can download it from [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud).
-
+> Full dataset not included due to size.
 
 ---
 
-## 🖥️ Streamlit Web App
+## ▶️ Running Locally
 
-### 🔹 Features
+### Backend
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-- 📁 Upload `.csv` file of transactions  
-- 📊 View hybrid fraud risk per row  
-- 📉 View histogram of risk scores  
-- 🧾 Download predictions as CSV  
-- ✅ Easy to test using `sample.csv`  
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-
----
-
-## 📈 Results
-
-- ✔️ Classification report from XGBoost  
-- ✔️ Anomaly scores from Autoencoder  
-- ✔️ Hybrid model combines both for stronger generalization  
-- ✔️ Visual output: histogram + result table  
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).  
-Feel free to use, modify, and distribute it with credit.
+Frontend: `http://localhost:8080`  
+Backend: `http://127.0.0.1:8000`
 
 ---
 
-## 🙋‍♂️ Author
+## 📈 Output Example
+
+Each transaction produces:
+- Fraud Probability (%)
+- Anomaly Score (%)
+- Hybrid Risk Score (%)
+- Final Prediction (Fraud / Non‑Fraud)
+
+---
+
+## 🎯 Use Cases
+
+- Banking fraud monitoring
+- FinTech risk engines
+- ML portfolio projects
+- Research on hybrid anomaly detection
+- Real‑world ML system design
+
+---
+
+## 🧑‍💻 Author
 
 **Harsh Karekar**  
-B.Tech in ECE | ML & AI Enthusiast | VIT Bhopal  
+B.Tech – Electronics & Communication Engineering  
+Aspiring Data Scientist / AI/ML Engineer
+ 
 📫 [LinkedIn](https://www.linkedin.com/in/harsh-karekar-01h6910a04/) | 💻 [GitHub](https://github.com/HarshK0103)
 
 ---
 
-## ⭐️ Show Your Support!
+## ⭐ Support
 
-If you found this project helpful, please consider giving it a ⭐️ on GitHub — it really motivates me to build more!
+If this project helped you or inspired you:
+- ⭐ Star the repository
+- 🍴 Fork it
+- 🧠 Extend it with explainability (SHAP / LIME)
+
+---
+
+**FraudShield – Detecting Fraud Before It Costs You.**
 
 ---
