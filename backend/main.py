@@ -3,6 +3,8 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import io
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 from inference import run_fraud_detection
 
