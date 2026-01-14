@@ -15,10 +15,16 @@ AUTOENCODER_PATH = os.path.join(MODEL_DIR, "autoencoder_model.keras")
 XGB_MODEL_PATH = os.path.join(MODEL_DIR, "xgb_model.json")
 SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
 
+tf.config.set_visible_devices([], "GPU")
+
 # -------------------------
 # Load Models (ONCE at startup)
 # -------------------------
-autoencoder = tf.keras.models.load_model(AUTOENCODER_PATH)
+autoencoder = tf.keras.models.load_model(
+    AUTOENCODER_PATH,
+    compile=False,
+    safe_mode=False
+)
 autoencoder.trainable = False
 
 xgb_model = xgb.XGBClassifier()
