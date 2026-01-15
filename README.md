@@ -12,10 +12,10 @@
 ## 🌐 Live Deployment
 
 - **Frontend (React + Vite + Tailwind CSS):**  
-  🔗 https://fraudshield.vercel.app *(replace with your actual URL)*
+  🔗 https://fraud-shield-harsh-karekars-projects.vercel.app
 
 - **Backend (FastAPI + ML Inference):**  
-  🔗 https://fraudshield-api.onrender.com *(replace with your actual URL)*
+  🔗 https://fraudshield-7hs7.onrender.com
 
 > ⚠️ Backend may take a few seconds to wake up if deployed on free-tier hosting.
 
