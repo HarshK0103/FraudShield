@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/lib/api";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
@@ -87,7 +88,7 @@ const FraudDashboard = () => {
         formData.append("file", selectedFile);
 
         const response = await axios.post(
-        "http://127.0.0.1:8000/predict",
+        `${API_BASE_URL}/predict`,
         formData,
         {
             headers: {
