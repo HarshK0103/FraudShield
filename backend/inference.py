@@ -11,7 +11,7 @@ import xgboost as xgb
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
-AUTOENCODER_PATH = os.path.join(MODEL_DIR, "autoencoder_model.keras")
+AUTOENCODER_PATH = os.path.join(MODEL_DIR, "autoencoder_model.h5")
 XGB_MODEL_PATH = os.path.join(MODEL_DIR, "xgb_model.json")
 SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
 
